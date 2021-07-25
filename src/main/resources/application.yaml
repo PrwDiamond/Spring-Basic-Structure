@@ -1,0 +1,18 @@
+# ===============================
+# = DATA SOURCE
+# ===============================
+# Set here configurations for the database connection
+debug: true
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+    database: default
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_record
+    username: postgres
+    password: syspass
+
