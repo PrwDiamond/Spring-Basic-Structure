@@ -9,6 +9,13 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final String[] PUBLIC = {
+            "/supplier",
+            "/supplier/{names}",
+            "/customer",
+            "/customer/{card}"
+    };
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         super.configure(auth);
@@ -18,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().disable().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().authorizeRequests().antMatchers("/supplier", "/supplier/{names}", "/customer", "/customer/{card}").anonymous()
+                .and().authorizeRequests().antMatchers(PUBLIC).anonymous()
                 .anyRequest().authenticated();
     }
 }

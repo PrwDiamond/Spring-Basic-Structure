@@ -3,12 +3,10 @@ package com.example.demo.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -36,4 +34,7 @@ public class ECustomer extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String passport;
+
+    @OneToMany(mappedBy = "customer", orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<AddressCustomer> addressCustomerList;
 }

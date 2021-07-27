@@ -5,6 +5,9 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -12,4 +15,7 @@ import javax.persistence.Entity;
 public class ESupplier extends BaseEntity {
     @Column(nullable = false, length = 120)
     private String name;
+
+    @OneToMany(mappedBy = "supplier", orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<AddressSupplier> addressSuppliers;
 }
